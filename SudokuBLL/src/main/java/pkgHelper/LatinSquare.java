@@ -3,6 +3,8 @@ package pkgHelper;
 import java.util.Arrays;
 
 public class LatinSquare {
+	
+	protected boolean PartialSudoku = false;
 
 	/**
 	 * LatinSquare - two dimensional array that's the core of the puzzle
@@ -77,9 +79,21 @@ public class LatinSquare {
 		Arrays.sort(sortedArray);
 
 		for (int i = 0; i < sortedArray.length - 1; i++) {
-			if (sortedArray[i] == sortedArray[i + 1]) {
-				hasDuplicates = true;
-				break;
+			
+			if(!PartialSudoku) {
+				
+				if (sortedArray[i] == sortedArray[i + 1]) {
+					hasDuplicates = true;
+					break;
+					
+				}
+			}else {
+				
+				if ((sortedArray[i] == sortedArray[i + 1]) && (sortedArray[i] != 0)) {
+					hasDuplicates = true;
+					break;
+				
+				}
 			}
 		}
 		return hasDuplicates;
